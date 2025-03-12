@@ -1,0 +1,11 @@
+{
+  "name": "diabetes-prediction",
+  "version": "1.0.0",
+  "description": "Diabetes prediction app",
+  "scripts": {
+    "start": "python3 app.py"
+  },
+  "engines": {
+    "node": "14.x"
+  }
+}
