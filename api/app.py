@@ -1,22 +1,11 @@
 from flask import Flask, render_template, request
 import pandas as pd
 import numpy as np
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import train_test_split
+import joblib
 
 app = Flask(__name__, template_folder='../templates')
 
-def load_and_train_model():
-    url = 'https://raw.githubusercontent.com/plotly/datasets/master/diabetes.csv'
-    data = pd.read_csv(url)
-    X = data[['Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age']]
-    y = data['Outcome']
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-    model = RandomForestClassifier(n_estimators=100, random_state=42)
-    model.fit(X_train, y_train)
-    return model
-
-model = load_and_train_model()
+model = joblib.load('model.joblib')
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
