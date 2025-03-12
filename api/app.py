@@ -7,6 +7,10 @@ app = Flask(__name__, template_folder='../templates')
 
 model = joblib.load('model.joblib')
 
+print("Current directory:", os.getcwd())
+print("Model path:", os.path.abspath('model.joblib'))
+print("Does model.joblib exist?", os.path.exists('model.joblib'))
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     prediction = None
